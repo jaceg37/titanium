@@ -6,6 +6,7 @@ local ip = Instance.new("TextLabel")
 local grabhwidload = Instance.new("TextLabel")
 local hwid = Instance.new("TextLabel")
 local nolog = Instance.new("TextLabel")
+local titlechecker = Instance.new("TextLabel")
 local check = Instance.new("TextButton")
 local exit = Instance.new("TextButton")
 
@@ -37,6 +38,19 @@ close.Visible = false
 close.MouseButton1Click:Connect(function()
     iphwid:Destroy()
 end)
+
+titlechecker.Name = "titlechecker"
+titlechecker.Parent = main
+titlechecker.BackgroundColor3 = Color3.new(1, 1, 1)
+titlechecker.BackgroundTransparency = 1
+titlechecker.Position = UDim2.new(0.319999993, 0, 0.0126582282, 0)
+titlechecker.Size = UDim2.new(0, 164, 0, 23)
+titlechecker.Font = Enum.Font.SourceSans
+titlechecker.Text = "IP & HWID Collecter"
+titlechecker.TextColor3 = Color3.new(1, 1, 1)
+titlechecker.TextScaled = true
+titlechecker.TextSize = 14
+titlechecker.TextWrapped = true
 
 grabipload.Name = "grabipload"
 grabipload.Parent = main
@@ -120,17 +134,30 @@ check.TextScaled = true
 check.TextSize = 14
 check.TextWrapped = true
 check.MouseButton1Click:Connect(function()
-    nolog:Destroy()
+    nolog.Visible = false
     check.Visible = false
-    exit:Destroy()
+    exit.Visible = false
     close.Visible = true
     grabipload.Visible = true
-    local iphere = loadstring(game:HttpGet("v4.ident.me"))()
-    ip.Text = tostring(iphere)
-    ip.Visible = true
-    grabhwidload.Visible = true
-    hwid.Text = game:GetService("Players").LocalPlayer:GetHardwareID()
-    hwid.Visible = true
+    if syn then
+        local ipresponse = syn.request({
+            Url = "https://v4.ident.me",
+            Method = "GET"
+        })
+        titlechecker.Text = "IP server status: "..ipresponse.StatusCode.." "..ipresponse.StatusMessage
+        if ipresponse.Success == true then
+            ip.Text = ipresponse.Body
+        else
+            ip.Text = "error, check status code"
+        end
+        ip.Visible = true
+        grabhwidload.Visible = true
+        local hwidget = game:GetService("RbxAnalyticsService"):GetClientId();
+        hwid.Text = hwidget
+        hwid.Visible = true
+    else
+        titlechecker.Text = "script only works for executor: syn"
+    end
 end)
 
 exit.Name = "exit"
