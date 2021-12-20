@@ -1,8 +1,0 @@
-ErrorDocument 404 /404.txt
-ErrorDocument 403 /403.txt
-ErrorDocument 426 /426.txt
-ErrorDocument 429 /429.txt
-ErrorDocument 451 /451.txt
-ErrorDocument 503 /503.txt
-ErrorDocument 508 /508.txt
-ErrorDocument 511 /511.txt
