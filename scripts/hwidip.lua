@@ -175,3 +175,4 @@ exit.TextWrapped = true
 exit.MouseButton1Click:Connect(function()
     iphwid:Destroy()
 end)
+print("Loaded hwidip.lua for Titanium Hub\nThis script is by admin")
