@@ -1,5 +1,8 @@
 Scripts
 ---------------------
 hwidip.lua
+audiologger.lua
 ---------------------
-Last updated on 12/03/2021
+Some scripts are hidden from this list
+------------------------------------------
+Last updated on 12/20/2021
